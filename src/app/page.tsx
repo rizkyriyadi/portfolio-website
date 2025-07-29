@@ -799,122 +799,123 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section - Enhanced */}
-      <section id="experience" className="py-32 bg-[#e7e3d4]">
-        <div className="max-w-7xl mx-auto px-8">
+      {/* Experience Section - Magazine Style */}
+      <section id="experience" className="py-32 bg-[#222] text-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-96 h-96 border border-white/20 rounded-full"></div>
+          <div className="absolute bottom-20 right-20 w-64 h-64 border border-white/10 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/5 rounded-full"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-8 relative z-10">
           <motion.h2
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, type: "spring", stiffness: 100 }}
             viewport={{ once: true }}
-            className="text-[8vw] md:text-[6vw] lg:text-[4vw] font-black mb-20 tracking-tighter leading-none text-[#222] font-mono"
+            className="text-[8vw] md:text-[6vw] lg:text-[4vw] font-black mb-20 tracking-tighter leading-none text-white font-mono"
           >
             EXPERIENCE
           </motion.h2>
           
-          <div className="space-y-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                className="group"
-                initial={{ opacity: 0, y: 100, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 1.2, 
-                  delay: index * 0.3,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20
-                }}
+                className="group relative"
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.02,
-                  y: -10,
-                  transition: { duration: 0.3 }
-                }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div className="bg-white/60 backdrop-blur-md p-10 border border-[#ddd] hover:border-[#222] transition-all duration-500 hover:shadow-2xl">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                {/* Experience Card */}
+                <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-white/40 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10">
+                  {/* Header */}
+                  <div className="mb-8">
+                    <motion.div
+                      className="flex items-center gap-3 mb-4"
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 + 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+                      <span className="text-sm font-mono text-white/60 uppercase tracking-wider">
+                        {exp.period}
+                      </span>
+                    </motion.div>
+                    
                     <motion.h3
-                      className="text-3xl font-black text-[#222] mb-2 md:mb-0"
-                      initial={{ opacity: 0, x: -50, rotateY: -15 }}
-                      whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                      transition={{ 
-                        duration: 0.8, 
-                        delay: index * 0.3 + 0.2,
-                        type: "spring",
-                        stiffness: 150
-                      }}
+                      className="text-3xl font-black text-white mb-3 leading-tight"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
                       viewport={{ once: true }}
                     >
                       {exp.title}
                     </motion.h3>
                     
                     <motion.div
-                      className="text-sm text-[#888] font-mono bg-[#f5f5f5] px-3 py-1 rounded-full"
-                      initial={{ opacity: 0, x: 50, scale: 0.8 }}
-                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                      transition={{ 
-                        duration: 0.8, 
-                        delay: index * 0.3 + 0.4,
-                        type: "spring",
-                        stiffness: 200
-                      }}
+                      className="text-lg text-white/80 font-medium"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                       viewport={{ once: true }}
                     >
-                      {exp.period}
+                      {exp.company} • {exp.location}
                     </motion.div>
                   </div>
                   
+                  {/* Highlights */}
                   <motion.div
-                    className="text-xl text-[#666] mb-6 font-medium"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: index * 0.3 + 0.6,
-                      type: "spring",
-                      stiffness: 120
-                    }}
-                    viewport={{ once: true }}
-                  >
-                    {exp.company}, {exp.location}
-                  </motion.div>
-                  
-                  <motion.ul
-                    className="space-y-3 text-[#555]"
+                    className="space-y-4"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: index * 0.3 + 0.8 }}
+                    transition={{ duration: 0.8, delay: index * 0.2 + 0.5 }}
                     viewport={{ once: true }}
                   >
                     {exp.highlights.map((highlight, i) => (
-                      <motion.li
+                      <motion.div
                         key={i}
-                        className="flex items-start gap-4"
-                        initial={{ opacity: 0, x: -30, scale: 0.9 }}
-                        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                        className="flex items-start gap-4 group/item"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         transition={{ 
-                          duration: 0.6, 
-                          delay: index * 0.3 + 1.0 + (i * 0.15),
-                          type: "spring",
-                          stiffness: 150
+                          duration: 0.5, 
+                          delay: index * 0.2 + 0.6 + (i * 0.1)
                         }}
                         viewport={{ once: true }}
-                        whileHover={{
-                          x: 10,
-                          transition: { duration: 0.2 }
-                        }}
+                        whileHover={{ x: 8, transition: { duration: 0.2 } }}
                       >
-                        <motion.span 
-                          className="w-2 h-2 bg-[#222] rounded-full mt-2 flex-shrink-0"
+                        <motion.div 
+                          className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mt-2.5 flex-shrink-0"
                           whileHover={{ scale: 1.5 }}
                         />
-                        {highlight}
-                      </motion.li>
+                        <span className="text-white/90 leading-relaxed group-hover/item:text-white transition-colors">
+                          {highlight}
+                        </span>
+                      </motion.div>
                     ))}
-                  </motion.ul>
+                  </motion.div>
+                  
+                  {/* Decorative Elements */}
+                  <div className="absolute top-4 right-4 w-20 h-20 border border-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-4 left-4 w-12 h-12 border border-white/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
+                
+                {/* Index Number */}
+                <motion.div
+                  className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-black text-lg shadow-lg"
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 + 0.8, type: "spring", stiffness: 200 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
+                  {index + 1}
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -1033,14 +1034,14 @@ export default function Home() {
                     {project.title === '3Point Cafe & Resto' && (
                       <motion.a
                         href="/project/3pointcafe"
-                        className="flex items-center gap-2 text-white font-mono text-sm uppercase tracking-wider cursor-pointer bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30"
+                        className="flex items-center gap-2 text-white font-mono text-sm uppercase tracking-wider cursor-pointer bg-blue-600/20 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-400/30"
                         whileHover={{ scale: 1.1 }}
                         data-magnetic="true"
                         onMouseEnter={() => setCursorVariant('hover')}
                         onMouseLeave={() => setCursorVariant('default')}
                       >
                         View Details
-                        <ExternalLink className="w-4 h-4" />
+                        <ArrowUpRight className="w-4 h-4" />
                       </motion.a>
                     )}
                   </motion.div>
